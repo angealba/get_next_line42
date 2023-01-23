@@ -6,7 +6,7 @@
 /*   By: analbarr <analbarr@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:21:51 by analbarr          #+#    #+#             */
-/*   Updated: 2023/01/16 17:37:53 by analbarr         ###   ########.fr       */
+/*   Updated: 2023/01/23 15:38:55 by analbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int	fd;
 	char	*str;
@@ -120,10 +120,12 @@ int	main(void)
 	while (i < 10)
 	{
 		str = get_next_line(fd);
+		str = get_next_line(0);
 		printf("line %d: %s", i, str);
 		free(str);
 		i++;
 	}
 	close(fd);
+	system ("leaks a.out");
 	return(0);
-}
+}*/
