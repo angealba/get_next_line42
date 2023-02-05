@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: analbarr <analbarr@student.42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/14 16:21:51 by analbarr          #+#    #+#             */
-/*   Updated: 2023/02/05 20:21:10 by analbarr         ###   ########.fr       */
+/*   Updated: 2023/02/05 19:41:45 by analbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_read_file(int fd, char *read_line)
 {
@@ -93,19 +93,19 @@ char	*ft_clean(char *read_line)
 
 char	*get_next_line(int fd)
 {
-	static char	*read_line;
+	static char	*read_line[OPEN_MAX];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	read_line = ft_read_file(fd, read_line);
-	if (!read_line)
+	read_line[fd] = ft_read_file(fd, read_line[fd]);
+	if (!read_line[fd])
 	{
-		free(read_line);
+		free(read_line[fd]);
 		return (0);
 	}
-	line = ft_get_line(read_line);
-	read_line = ft_clean(read_line);
+	line = ft_get_line(read_line[fd]);
+	read_line[fd] = ft_clean(read_line[fd]);
 	return (line);
 }
 
